@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Portal</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; }
+        header { background: #111; color: white; padding: 15px; text-align: center; }
+        nav { background: #222; padding: 10px; }
+        nav a { color: white; margin: 15px; text-decoration: none; font-weight: bold; }
+        section { padding: 20px; }
+        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .product { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        input, button, textarea { padding: 8px; width: 100%; margin: 5px 0; }
+        button { background: black; color: white; border: none; cursor: pointer; }
+        button:hover { background: #333; }
+        #ordersList, #wishlistList, #reviewList { background: white; padding: 10px; border-radius: 8px; }
+    </style>
+
+</head>
+<body>
+
+<header>
+    <h1>ShopEase E-Commerce Portal</h1>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#products">Product Items</a>
+    <a href="#contact">Contact Us</a>
+    <a href="#about">About Us</a>
+    <a href="#orders">Orders</a>
+    <a href="#wishlist">Wishlist</a>
+    <a href="#reviews">Comments & Reviews</a>
+    <a href="#customer">Customer Care</a>
+    <a href="#report">Reporting</a>
+</nav>
+
+<!-- HOME SECTION -->
+<section id="home">
+    <h1>Welcome to ShopEase</h1>
+    <p>Your one-stop platform for all your shopping needs.</p>
+</section>
+
+<!-- PRODUCT SECTION -->
+<section id="products">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+        <div class="product"><h3>Mobile Phone</h3><p>Price: $299</p><button onclick="addOrder('Mobile Phone')">Add to Order</button></div>
+        <div class="product"><h3>Laptop</h3><p>Price: $799</p><button onclick="addOrder('Laptop')">Add to Order</button></div>
+        <div class="product"><h3>Smart Watch</h3><p>Price: $149</p><button onclick="addOrder('Smart Watch')">Add to Order</button></div>
+    </div>
+</section>
+
+<!-- REGISTRATION & LOGIN -->
+<section id="auth">
+    <h2>User Registration</h2>
+    <input type="text" id="regName" placeholder="Full Name">
+    <input type="email" id="regEmail" placeholder="Email">
+    <input type="password" id="regPass" placeholder="Password">
+    <button onclick="register()">Register</button>
+
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPass" placeholder="Password">
+    <button onclick="login()">Login</button>
+</section>
+
+<!-- ORDERS -->
+<section id="orders">
+    <h2>Your Orders</h2>
+    <div id="ordersList"></div>
+</section>
+
+<!-- WISHLIST -->
+<section id="wishlist">
+    <h2>Your Wishlist</h2>
+    <input id="wishInput" placeholder="Enter item">
+    <button onclick="addWishlist()">Add to Wishlist</button>
+    <div id="wishlistList"></div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+    <h2>Comments & Reviews</h2>
+    <textarea id="reviewInput" placeholder="Write your review..."></textarea>
+    <button onclick="addReview()">Submit Review</button>
+    <div id="reviewList"></div>
+</section>
+
+<!-- CUSTOMER CARE -->
+<section id="customer">
+    <h2>Customer Care</h2>
+    <input type="text" id="custName" placeholder="Your Name">
+    <textarea id="custMsg" placeholder="Your Message"></textarea>
+    <button onclick="submitQuery()">Submit</button>
+</section>
+
+<!-- REPORTING -->
+<section id="report">
+    <h2>Reporting Dashboard</h2>
+    <p>Total Orders: <span id="totalOrders">0</span></p>
+    <p>Total Wishlist Items: <span id="totalWishlist">0</span></p>
+</section>
+
+<script>
+    let orders = [];
+    let wishlist = [];
+    let reviews = [];
+
+    function addOrder(item) {
+        orders.push(item);
+        document.getElementById("ordersList").innerHTML = orders.join("<br>");
+        document.getElementById("totalOrders").innerText = orders.length;
+    }
+
+    function addWishlist() {
+        let item = document.getElementById("wishInput").value;
+        if(item.trim() !== "") {
+            wishlist.push(item);
+            document.getElementById("wishlistList").innerHTML = wishlist.join("<br>");
+            document.getElementById("totalWishlist").innerText = wishlist.length;
+        }
+    }
+
+    function addReview() {
+        let review = document.getElementById("reviewInput").value;
+        if(review.trim() !== "") {
+            reviews.push(review);
+            document.getElementById("reviewList").innerHTML = reviews.join("<br><br>");
+        }
+    }
+
+    function submitQuery() {
+        alert("Customer query submitted successfully!");
+    }
+
+    function register() {
+        alert("Registration successful!");
+    }
+
+    function login() {
+        alert("Logged in successfully!");
+    }
+</script>
+
+</body>
+</html>
